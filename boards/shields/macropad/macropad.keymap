@@ -1,0 +1,29 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    behaviors {
+        encoder_vol: encoder_vol {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "Base";
+            bindings = <
+                &kp RCMD      // Key 1 - VOX (VoiceInk toggle, right command)
+                &kp ENTER     // Key 2 - ENT
+                &kp C_PP      // Key 3 - SPC (spare: play/pause)
+                &kp C_MUTE    // Key 4 - encoder push (mute)
+            >;
+
+            sensor-bindings = <&encoder_vol>;
+        };
+    };
+};

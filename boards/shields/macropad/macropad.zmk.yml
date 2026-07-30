@@ -1,0 +1,10 @@
+file_format: "1"
+id: macropad
+name: Handheld Macro Pad
+type: shield
+url: ""
+requires:
+  - seeed_xiao
+features:
+  - keys
+  - encoder

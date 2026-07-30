@@ -1,0 +1,31 @@
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    // Direct-wire kscan: each key connects one GPIO to ground
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios
+            = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // D0 - VOX
+            , <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // D1 - ENT
+            , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // D2 - SPC
+            , <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // D3 - encoder push
+            ;
+    };
+
+    encoder: encoder {
+        compatible = "alps,ec11";
+        a-gpios = <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;   // D4
+        b-gpios = <&xiao_d 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;   // D5
+        steps = <20>;
+        status = "okay";
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder>;
+        triggers-per-rotation = <20>;
+    };
+};

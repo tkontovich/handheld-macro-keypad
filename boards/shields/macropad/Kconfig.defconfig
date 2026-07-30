@@ -1,0 +1,12 @@
+if SHIELD_MACROPAD
+
+config ZMK_KEYBOARD_NAME
+    default "Macro Pad"
+
+config EC11
+    default y
+
+config ZMK_SLEEP
+    default y
+
+endif
