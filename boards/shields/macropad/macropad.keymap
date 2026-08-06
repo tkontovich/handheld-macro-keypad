@@ -17,10 +17,22 @@
         default_layer {
             display-name = "Base";
             bindings = <
-                &kp RCMD      // Key 1 - VOX (VoiceInk toggle, right command)
-                &kp ENTER     // Key 2 - ENT
-                &kp C_PP      // Key 3 - SPC (spare: play/pause)
-                &kp C_MUTE    // Key 4 - encoder push (mute)
+                &kp RCMD           // Key 1 - VOX (VoiceInk toggle)
+                &kp ENTER          // Key 2 - ENT
+                &lt 1 C_PP         // Key 3 - SPC: tap = play/pause, hold = Bluetooth layer
+                &kp C_MUTE         // Key 4 - encoder push (mute)
+            >;
+
+            sensor-bindings = <&encoder_vol>;
+        };
+
+        bluetooth_layer {
+            display-name = "BT";
+            bindings = <
+                &bt BT_SEL 0       // hold SPC + VOX  = connect to computer 1
+                &bt BT_SEL 1       // hold SPC + ENT  = connect to computer 2
+                &trans             // (SPC itself, being held)
+                &bt BT_CLR         // hold SPC + knob click = clear current profile's pairing
             >;
 
             sensor-bindings = <&encoder_vol>;
